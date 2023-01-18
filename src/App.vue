@@ -1,99 +1,56 @@
-<template id="app">
-  <div class="content">
-    <hooper :settings="hooperSettings2">
-      <slide>
-        <div class="images img1">
-          <h2>Slider 1</h2>
-        </div>
-      </slide>
-      <slide>          
-        <div class="images img2">
-          <h2>Slider 2</h2>
-        </div> 
-      </slide>
-      <slide>          
-        <div class="images img3">
-          <h2>Slider 3</h2>
-        </div>       
-      </slide>
-      <slide>  
-        <div class="images img4">
-          <h2>Slider 4</h2>
-        </div> 
-      </slide>
-      <slide>     
-        <div class="images img5">
-          <h2>Slider 5</h2>
-        </div>
-      </slide>
-    </hooper>
-    <h1>Teste</h1>
-    <hooper :settings="hooperSettings">
-      <slide>
-        <div class="images img1">
-          <h2>Slider 1</h2>
-        </div>
-      </slide>
-      <slide>          
-        <div class="images img2">
-          <h2>Slider 2</h2>
-        </div> 
-      </slide>
-      <slide>          
-        <div class="images img3">
-          <h2>Slider 3</h2>
-        </div>       
-      </slide>
-      <slide>  
-        <div class="images img4">
-          <h2>Slider 4</h2>
-        </div> 
-      </slide>
-      <slide>     
-        <div class="images img5">
-          <h2>Slider 5</h2>
-        </div>
-      </slide>
-    </hooper>
-  </div>
+<template>
+  <main>
+    <div class="left">
+      <button @click="handleVErticalClick">Vertical</button>
+    </div>
+    <div style="width: 100%">
+      <base-carousel v-show="productShow" :key="updateComponent"/>
+    </div>
+  </main>
 </template>
 
 <script>
-import {Hooper, Slide} from 'hooper'
-import 'hooper/dist/hooper.css';
+
+import BaseCarousel from './components/BaseCarousel/index.vue';
 
 export default {
-  components: {
-    Hooper,
-    Slide
+  components:{
+    BaseCarousel
   },
   data(){
-    return {
-      hooperSettings:{
-        itemsToShow: 2,
-        vertical: true
-      },
-      hooperSettings2:{
-        itemsToShow: 2,
-        vertical: false
-      }
+    return{
+      productShow: false,
+      updateComponent: 0
+    }
+  },
+  methods:{
+    handleVErticalClick(){
+      this.productShow = true;
+      this.forceRerender();
+    },
+    forceRerender(){
+      this.updateComponent += 1;
     }
   }
 };
 </script>
 
-<style>
-  .content{
+<style scoped>
+  .left{
     display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
   }
 
-  .hooper{
-    width: 200px;
-    border: 1px solid red;
+  .right{
     display: flex;
+    flex-direction: column;
   }
 
+  main{
+    display: grid;
+    grid-template-columns: auto 50%;
+    background: pink;
+  }
 
 </style>

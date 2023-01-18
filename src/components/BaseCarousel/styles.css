@@ -1,0 +1,12 @@
+.content{
+    display: flex;
+    flex-direction: column;
+}
+
+.hooper{
+    height: 100%;
+}
+
+.hooper-slide{
+    border: 1px solid black;
+}
