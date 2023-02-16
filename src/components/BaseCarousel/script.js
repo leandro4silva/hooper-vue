@@ -21,7 +21,7 @@ name: 'BaseCarosel',
         {name: 'gabriel'},
         {name: 'maria'},
         {name: 'neuza'},
-      ]
+      ],
     }
   }
 };

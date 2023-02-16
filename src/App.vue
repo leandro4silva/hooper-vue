@@ -3,8 +3,8 @@
     <div class="left">
       <button @click="handleVErticalClick">Vertical</button>
     </div>
-    <div style="width: 100%">
-      <base-carousel v-show="productShow" :key="updateComponent"/>
+    <div>
+      <base-carousel v-show="productShow == true && showSlide" ref="carousel" :key="updateComponent" />
     </div>
   </main>
 </template>
@@ -13,25 +13,33 @@
 
 import BaseCarousel from './components/BaseCarousel/index.vue';
 
-export default {
+export default{
   components:{
     BaseCarousel
   },
   data(){
     return{
       productShow: false,
-      updateComponent: 0
+      updateComponent: 0,
+      productShow: 'Slide'
     }
   },
   methods:{
     handleVErticalClick(){
       this.productShow = true;
-      this.forceRerender();
     },
     forceRerender(){
       this.updateComponent += 1;
+    },
+  },
+  computed:{
+    showSlide: function(){
+      if(this.productShow == true){
+        this.forceRerender();
+        return true;
+      }
     }
-  }
+  },
 };
 </script>
 
@@ -40,6 +48,10 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .border-red{
+    border: 1px solid red;
   }
 
   .right{
